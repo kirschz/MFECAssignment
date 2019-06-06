@@ -35,8 +35,8 @@ namespace MFEC_Assignment.Controllers
                 }
                 else ServiceFee = 3d + (diff.Hours * 60d) + diff.Minutes + ((1 / 60d) * diff.Seconds) - 1d;
 
-                customer.ServiceFee = ServiceFee;
-                customer.DiffDate = (diff.Hours * 60) + diff.Minutes;
+                customer.ServiceFee = double.Parse(ServiceFee.ToString("#.00"));
+                customer.TotalTime = (diff.Hours * 60) + diff.Minutes;
                 customer.ModileNumber = data[i++];
                 customer.Promotion = data[i++]; ;
                 customerLogs.Add(customer);
@@ -46,10 +46,10 @@ namespace MFEC_Assignment.Controllers
             .Select(g => new CustomerLog
             {
                 ModileNumber = g.Key,
-                DiffDate = g.Sum(s => s.DiffDate),
+                TotalTime = g.Sum(s => s.TotalTime),
                 ServiceFee = g.Sum(s => s.ServiceFee),
                 Promotion = g.First().Promotion,
-                DateFormatted = g.First().Promotion
+                DateFormatted = g.First().DateFormatted
             })
             .ToList();
             var n = groupedCustomerList.Count;
@@ -61,7 +61,7 @@ namespace MFEC_Assignment.Controllers
             public string DateFormatted { get; set; }
             public DateTime StartTime { get; set; }
             public DateTime EndTime { get; set; }
-            public int DiffDate { get; set; }
+            public int TotalTime { get; set; }
             public double ServiceFee { get; set; }
             public string ModileNumber { get; set; }
             public string Promotion { get; set; }

@@ -25,13 +25,14 @@ export class FetchData extends Component {
             <th>Temp. (F)</th>
             <th>Temp. (F)</th>
             <th>Summary</th>
+            
           </tr>
         </thead>
         <tbody>
           {forecasts.map(forecast =>
               <tr key={forecast.modileNumber}>
                   <td>{forecast.modileNumber}</td>
-                  <td>{forecast.diffDate}</td>
+                  <td>{forecast.totalTime}</td>
                   <td>{forecast.serviceFee}</td>
                   <td>{forecast.promotion}</td>
                   <td>{forecast.dateFormatted}</td>
