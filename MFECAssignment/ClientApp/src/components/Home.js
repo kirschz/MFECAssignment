@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -22,7 +23,7 @@ export class Home extends Component {
                     <tr>
                         <th>Mobile No</th>
                         <th>TotalTime(min)</th>
-                        <th>ค่าโทร</th>
+                        <th>ค่าโทร(฿)</th>
                         <th>โปรโมชั่น</th>
                     </tr>
                 </thead>
@@ -31,7 +32,9 @@ export class Home extends Component {
                         <tr key={forecast.modileNumber}>
                             <td>{forecast.modileNumber}</td>
                             <td>{forecast.totalTime}</td>
-                            <td>{forecast.serviceFee}</td>
+                            <td>
+                                <NumberFormat value={forecast.serviceFee} displayType={'text'} thousandSeparator={true} decimalScale="2" fixedDecimalScale="true" renderText={value => <div>{value}</div>} />
+                            </td>
                             <td>{forecast.promotion}</td>
                         </tr>
                     )}
@@ -49,6 +52,8 @@ export class Home extends Component {
             <div>
                 <h1>ค่าใช้บริการของลูกค้าแต่ละเบอร์</h1>
                 <p></p>
+               
+
                 {contents}
             </div>
         );

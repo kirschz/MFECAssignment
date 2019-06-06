@@ -35,7 +35,7 @@ namespace MFEC_Assignment.Controllers
                 }
                 else ServiceFee = 3d + (diff.Hours * 60d) + diff.Minutes + ((1 / 60d) * diff.Seconds) - 1d;
 
-                customer.ServiceFee = double.Parse(ServiceFee.ToString("#.00"));
+                customer.ServiceFee = ServiceFee;
                 customer.TotalTime = (diff.Hours * 60) + diff.Minutes;
                 customer.ModileNumber = data[i++];
                 customer.Promotion = data[i++]; ;
