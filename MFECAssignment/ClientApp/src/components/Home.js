@@ -7,8 +7,8 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { forecasts: [], loading: true };
-
-        fetch('api/Promotion/ReadData')
+       
+        fetch('api/Promotion/GetLogData')
             .then(response => response.json())
             .then(data => {
                 console.error('data:', data)
@@ -30,7 +30,7 @@ export class Home extends Component {
                 <tbody>
                     {forecasts.map(forecast =>
                         <tr key={forecast.modileNumber}>
-                            <td>{forecast.modileNumber}</td>
+                            <td><a href={'fetch-data?number=' + forecast.modileNumber}>{forecast.modileNumber}</a></td>
                             <td>{forecast.totalTime}</td>
                             <td>
                                 <NumberFormat value={forecast.serviceFee} displayType={'text'} thousandSeparator={true} decimalScale="2" fixedDecimalScale="true" renderText={value => <div>{value}</div>} />
@@ -47,10 +47,10 @@ export class Home extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : Home.renderForecastsTable(this.state.forecasts);
-
+      
         return (
             <div>
-                <h1>ค่าใช้บริการของลูกค้าแต่ละเบอร์</h1>
+                <h1>ค่าใช้บริการของลูกค้าแต่ละเบอร์ </h1>
                 <p></p>
                
 
